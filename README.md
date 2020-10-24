@@ -27,6 +27,14 @@ This mode is compatible with a wider range of receiving hardware, such as (in my
 1. Acer C720 running Debian Buster
 1. Ipad pro 11 running iPadOS 14
 
+## What about the GUI?
+
+Plover needs an X environment regardless of whether or not you pass `-g none`. This is what actually makes this software work too, we're able to grab the `xinput`.  
+
+In order to run plover in a headless mode, we rely on the `dummy` xorg driver.  I've included an xorg.conf here that can be used.  It is of an OK screen size, that if you want to debug and do stuff you can run `x11vnc` or similar and get a decent screensize.  In the future I'll likely make the default screen much smaller if it saves much memory (untested as of yet).
+
+Right now I start X manually just because I didn't get around to scripting it.  If you have your pi in GUI start mode you could probably just edit `.xinitrc` to do the startup.
+
 ## Under the hood
 
 StenoBox is written in Go because it was easier for me, but ports to other languages are encouraged.  When the output is intended for an arudino type device (currently only tested with Teensy v4.1), StenoBox will produce keycodes generated from TeensyDuino library sources.
