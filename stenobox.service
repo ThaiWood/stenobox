@@ -1,0 +1,9 @@
+[Unit]
+Description=Keep stenobox open
+
+[Service]
+ExecStart=/home/pi/go/bin/stenobox -out serial -dev /dev/serial0 -baud 19200
+Restart=always
+
+[Install]
+WantedBy=default.target
