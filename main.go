@@ -23,10 +23,12 @@ const end = ';'
 
 var protocol string
 var device string
+var baud int
 
 func init() {
-	flag.StringVar(&protocol, "out", "serial", "Desired output method, either serial or usb")
-	flag.StringVar(&device, "dev", "/dev/serial0", "Desired output device, such as /dev/serial0 or /dev/hidg0")
+	flag.StringVar(&protocol, "out", "serial", "Output method, either serial or usb")
+	flag.StringVar(&device, "dev", "/dev/serial0", "Output device, such as /dev/serial0 or /dev/hidg0")
+	flag.IntVar(&baud, "baud", 115200, "Baud rate")
 	flag.Parse()
 }
 
@@ -36,7 +38,7 @@ func main() {
 
 	switch protocol {
 	case "serial":
-		r = &SerialReport{}
+		r = &SerialReport{Device: device, Baud: baud}
 	case "usb":
 		r = &HIDReport{}
 	default:
@@ -73,28 +75,6 @@ func main() {
 			} else {
 
 				r.SetKey(int(hidcode))
-				//release := HIDReport{}
-				/*
-						buf := new(bytes.Buffer)
-						releasebuf := new(bytes.Buffer)
-						err = binary.Write(buf, binary.LittleEndian, r)
-						if err != nil {
-							log.Println("Error writing HID report buffer")
-							log.Print(err)
-					/}
-
-						err = binary.Write(releasebuf, binary.LittleEndian, release)
-
-						if err != nil {
-							log.Println("Error writing release HID report buffer")
-							log.Print(err)
-						}
-
-						//fmt.Printf("DATA: %v", buf.Bytes())
-				*/
-
-				//fmt.Printf("SERIAL KEYCODE: %d\n", sKeycode)
-				//hid, err := os.OpenFile("/dev/serial0", os.O_WRONLY, 0666)
 
 				err = r.SendKeys(device)
 
@@ -104,21 +84,6 @@ func main() {
 				}
 
 				r.Empty()
-
-				/*
-					if _, err := /id.Write([]byte(strconv.Itoa(sKeycode))); err != nil {
-						hid.Close() // ignore error; Write error takes precedence
-						log.Println("Error writing to /dev/hidg0")
-						log.Fatal(err)
-					}
-				*/
-				/*
-					if _, err := hid.Write(releasebuf.Bytes()); err != nil {
-						hid.Close() // ignore error; Write error takes precedence
-						log.Println("Error writing to /dev/hidg0")
-						log.Print(err)
-					}
-				*/
 
 				//	hid.Close()
 			}

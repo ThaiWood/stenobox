@@ -7,6 +7,12 @@ import (
 )
 
 type SerialReport struct {
+	Device string
+	Baud   int
+	SerialKeys
+}
+
+type SerialKeys struct {
 	Mods     int
 	reserved int
 	Key1     int
@@ -31,31 +37,33 @@ func (r *SerialReport) SetKey(keycode int) {
 }
 func (r *SerialReport) SendKeys(port string) error {
 
-	c := &serial.Config{Name: "/dev/serial0", Baud: 115200}
+	c := &serial.Config{Name: r.Device, Baud: r.Baud}
 
-	hid, err := serial.OpenPort(c)
+	serialPort, err := serial.OpenPort(c)
+	defer serialPort.Close()
+
 	if err != nil {
 		log.Println("Error opening communications port or device, check permissions")
 		return err
 	}
 
-	hid.Write([]byte("-"))
+	serialPort.Write([]byte("-"))
 
-	hid.Write([]byte(strconv.Itoa(r.Mods)))
-	hid.Write([]byte(","))
-	hid.Write([]byte(strconv.Itoa(r.Key1)))
-	hid.Write([]byte(","))
-	hid.Write([]byte(strconv.Itoa(r.Key2)))
-	hid.Write([]byte(","))
-	hid.Write([]byte(strconv.Itoa(r.Key3)))
-	hid.Write([]byte(","))
-	hid.Write([]byte(strconv.Itoa(r.Key4)))
-	hid.Write([]byte(","))
-	hid.Write([]byte(strconv.Itoa(r.Key5)))
-	hid.Write([]byte(","))
-	hid.Write([]byte(strconv.Itoa(r.Key6)))
+	serialPort.Write([]byte(strconv.Itoa(r.Mods)))
+	serialPort.Write([]byte(","))
+	serialPort.Write([]byte(strconv.Itoa(r.Key1)))
+	serialPort.Write([]byte(","))
+	serialPort.Write([]byte(strconv.Itoa(r.Key2)))
+	serialPort.Write([]byte(","))
+	serialPort.Write([]byte(strconv.Itoa(r.Key3)))
+	serialPort.Write([]byte(","))
+	serialPort.Write([]byte(strconv.Itoa(r.Key4)))
+	serialPort.Write([]byte(","))
+	serialPort.Write([]byte(strconv.Itoa(r.Key5)))
+	serialPort.Write([]byte(","))
+	serialPort.Write([]byte(strconv.Itoa(r.Key6)))
 
-	hid.Write([]byte(";"))
+	serialPort.Write([]byte(";"))
 
 	return nil
 }

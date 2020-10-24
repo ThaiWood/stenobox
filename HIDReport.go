@@ -8,7 +8,7 @@ import (
 )
 
 type HIDReport struct {
-	device string
+	Device string
 	HIDKeys
 }
 
@@ -55,8 +55,8 @@ func (r *HIDReport) SendKeys(device string) error {
 		log.Println(err)
 	}
 
-	var hid *os.File
-	hid, err = os.OpenFile(device, os.O_WRONLY, 0666)
+	hid, err := os.OpenFile(device, os.O_WRONLY, 0666)
+	defer hid.Close()
 	if err != nil {
 		return err
 	}
