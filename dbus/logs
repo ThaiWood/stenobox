@@ -1,0 +1,43 @@
+-----------------------Feb 06 14:00:18 raspberrypi bluetoothd[411]: src/adapter.c:dev_class_changed_callback() Class: 0x0025c0
+Feb 06 14:00:18 raspberrypi bluetoothd[411]: src/adapter.c:local_name_changed_callback() Name: StenoBox
+Feb 06 14:00:18 raspberrypi bluetoothd[411]: src/adapter.c:local_name_changed_callback() Short name:
+Feb 06 14:00:18 raspberrypi bluetoothd[411]: src/adapter.c:local_name_changed_callback() Current alias: StenoBox
+Feb 06 14:00:18 raspberrypi bluetoothd[411]: src/adapter.c:new_settings_callback() Settings: 0x00000adb
+Feb 06 14:00:18 raspberrypi bluetoothd[411]: src/adapter.c:settings_changed() Changed settings: 0x0000000a
+Feb 06 14:00:31 raspberrypi bluetoothd[411]: src/adapter.c:remove_temp_devices() /org/bluez/hci0
+Feb 06 14:02:04 raspberrypi bluetoothd[411]: src/adapter.c:connected_callback() hci0 device E0:E6:2E:16:FE:FF connected eir_len 18
+Feb 06 14:02:08 raspberrypi bluetoothd[411]: src/adapter.c:dev_disconnected() Device E0:E6:2E:16:FE:FF disconnected, reason 2
+Feb 06 14:02:08 raspberrypi bluetoothd[411]: src/adapter.c:adapter_remove_connection()
+Feb 06 14:02:08 raspberrypi bluetoothd[411]: plugins/policy.c:disconnect_cb() reason 2
+Feb 06 14:02:08 raspberrypi bluetoothd[411]: src/adapter.c:bonding_attempt_complete() hci0 bdaddr E0:E6:2E:16:FE:FF type 0 status 0xe
+Feb 06 14:02:08 raspberrypi bluetoothd[411]: src/device.c:device_bonding_complete() bonding (nil) status 0x0e
+Feb 06 14:02:08 raspberrypi bluetoothd[411]: src/device.c:device_bonding_failed() status 14
+Feb 06 14:02:08 raspberrypi bluetoothd[411]: src/adapter.c:resume_discovery()
+------------------------------Feb 06 14:02:37 raspberrypi bluetoothd[411]: src/adapter.c:local_name_changed_callback() Name: ThanhLe_Keyboard_Mouse
+Feb 06 14:02:37 raspberrypi bluetoothd[411]: src/adapter.c:local_name_changed_callback() Short name:
+Feb 06 14:02:37 raspberrypi bluetoothd[411]: src/adapter.c:local_name_changed_callback() Current alias: ThanhLe_Keyboard_Mouse
+Feb 06 14:02:37 raspberrypi bluetoothd[411]: src/profile.c:register_profile() sender :1.18
+Feb 06 14:02:37 raspberrypi bluetoothd[411]: src/profile.c:create_ext() Created ":1.18/org/bluez/hci0/00001124-0000-1000-8000-00805f9b34fb"
+Feb 06 14:02:37 raspberrypi bluetoothd[411]: src/profile.c:ext_adapter_probe() ":1.18/org/bluez/hci0/00001124-0000-1000-8000-00805f9b34fb" probed
+Feb 06 14:02:37 raspberrypi bluetoothd[411]: src/adapter.c:adapter_service_add() /org/bluez/hci0
+Feb 06 14:02:37 raspberrypi bluetoothd[411]: src/sdpd-service.c:add_record_to_server() Adding record with handle 0x10003
+Feb 06 14:02:37 raspberrypi bluetoothd[411]: src/sdpd-service.c:add_record_to_server() Record pattern UUID 00000011-0000-1000-8000-00805f9
+Feb 06 14:02:37 raspberrypi bluetoothd[411]: src/sdpd-service.c:add_record_to_server() Record pattern UUID 00000100-0000-1000-8000-00805f9
+Feb 06 14:02:37 raspberrypi bluetoothd[411]: src/sdpd-service.c:add_record_to_server() Record pattern UUID 00001002-0000-1000-8000-00805f9
+Feb 06 14:02:37 raspberrypi bluetoothd[411]: src/sdpd-service.c:add_record_to_server() Record pattern UUID 00001124-0000-1000-8000-00805f9
+Feb 06 14:02:37 raspberrypi bluetoothd[411]: src/adapter.c:adapter_service_insert() /org/bluez/hci0
+Feb 06 14:02:37 raspberrypi bluetoothd[411]: src/adapter.c:add_uuid() sending add uuid command for index 0
+Feb 06 14:02:37 raspberrypi bluetoothd[411]: src/profile.c:ext_device_probe() :1.18/org/bluez/hci0/00001124-0000-1000-8000-00805f9b34fb probed with UUID 00001124-0000-1000-8000-00805f9b34fb
+Feb 06 14:02:37 raspberrypi bluetoothd[411]: src/service.c:change_state() 0x5a9d40: device E0:E6:2E:16:FE:FF profile :1.18/org/bluez/hci0/00001124-0000-1000-8000-00805f9b34fb state changed: unavailable -> disconnected (0)
+Feb 06 14:02:37 raspberrypi bluetoothd[411]: src/adapter.c:dev_class_changed_callback() Class: 0x000000
+-------^[Feb 06 14:03:00 raspberrypi bluetoothd[411]: src/profile.c:ext_exited() ":1.18/org/bluez/hci0/00001124-0000-1000-8000-00805f9b34fb" exited
+Feb 06 14:03:00 raspberrypi bluetoothd[411]: src/service.c:change_state() 0x5a9d40: device E0:E6:2E:16:FE:FF profile :1.18/org/bluez/hci0/00001124-0000-1000-8000-00805f9b34fb state changed: disconnected -> unavailable (0)
+Feb 06 14:03:00 raspberrypi bluetoothd[411]: src/profile.c:ext_device_remove() :1.18/org/bluez/hci0/00001124-0000-1000-8000-00805f9b34fb
+Feb 06 14:03:00 raspberrypi bluetoothd[411]: src/service.c:btd_service_unref() 0x5a9d40: ref=0
+Feb 06 14:03:00 raspberrypi bluetoothd[411]: src/profile.c:ext_adapter_remove() ":1.18/org/bluez/hci0/00001124-0000-1000-8000-00805f9b34fb" removed
+Feb 06 14:03:00 raspberrypi bluetoothd[411]: src/adapter.c:adapter_service_remove() /org/bluez/hci0
+Feb 06 14:03:00 raspberrypi bluetoothd[411]: src/adapter.c:remove_uuid() sending remove uuid command for index 0
+Feb 06 14:03:00 raspberrypi bluetoothd[411]: src/sdpd-service.c:remove_record_from_server() Removing record with handle 0x10003
+Feb 06 14:03:00 raspberrypi bluetoothd[411]: src/profile.c:remove_ext() Removed ":1.18/org/bluez/hci0/00001124-0000-1000-8000-00805f9b34fb"
+
+
