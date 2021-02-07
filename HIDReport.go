@@ -88,3 +88,6 @@ func (r *HIDReport) Close() {
 func (r *HIDReport) SetKey(hidcode int) {
 	r.HIDKeys.Key1 = uint8(hidcode)
 }
+
+func (r *HIDReport) Setup() {
+}

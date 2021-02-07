@@ -25,7 +25,6 @@ type SerialKeys struct {
 
 func (r *SerialReport) AddModifier(keycode int) {
 	r.Mods = keycode
-	return
 }
 
 func (r *SerialReport) Empty() {
@@ -66,4 +65,7 @@ func (r *SerialReport) SendKeys(port string) error {
 	serialPort.Write([]byte(";"))
 
 	return nil
+}
+
+func (r *SerialReport) Setup() {
 }

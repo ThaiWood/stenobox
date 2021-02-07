@@ -16,6 +16,7 @@ type Reporter interface {
 	SetKey(int)
 	Empty()
 	AddModifier(int)
+	Setup()
 }
 
 const start = '-'
@@ -26,7 +27,7 @@ var device string
 var baud int
 
 func init() {
-	flag.StringVar(&protocol, "out", "serial", "Output method, either serial or usb")
+	flag.StringVar(&protocol, "out", "bluetooth", "Output method, either serial or usb")
 	flag.StringVar(&device, "dev", "/dev/serial0", "Output device, such as /dev/serial0 or /dev/hidg0")
 	flag.IntVar(&baud, "baud", 115200, "Baud rate")
 	flag.Parse()
@@ -41,8 +42,11 @@ func main() {
 		r = &SerialReport{Device: device, Baud: baud}
 	case "usb":
 		r = &HIDReport{}
+	case "bluetooth":
+		r = &BluetoothReport{}
+		r.Setup()
 	default:
-		log.Fatal("Protocol must either be serial or usb")
+		log.Fatal("Protocol must either be serial, usb, or bluetooth")
 	}
 
 	rDown, _ := regexp.Compile(`key press\s*(?P<code>\d*)`)
@@ -154,4 +158,35 @@ func setupXinput() *bufio.Scanner {
 	}
 
 	return bufio.NewScanner(xinputReader)
+}
+
+func setupBluetooth() {
+	hciconfigcmd := "hciconfig"
+	args := []string{"hci0", "class", "0x0025C0"}
+	hciconfig := exec.Command(hciconfigcmd, args...)
+
+	err := hciconfig.Start()
+	if err != nil {
+		log.Println("Error setting hci class:")
+		log.Fatal(err)
+	}
+
+	args = []string{"hci0", "name", "StenoBox"}
+	hciconfig = exec.Command(hciconfigcmd, args...)
+
+	err = hciconfig.Start()
+	if err != nil {
+		log.Println("Error setting hci name:")
+		log.Fatal(err)
+	}
+
+	args = []string{"hci0", "piscan"}
+	hciconfig = exec.Command(hciconfigcmd, args...)
+
+	err = hciconfig.Start()
+	if err != nil {
+		log.Println("Error making device discoverable va hciconfig")
+		log.Fatal(err)
+	}
+
 }
